@@ -58,13 +58,12 @@
     <Compile Include="AvisoSelecao.xaml.cs">
       <DependentUpon>AvisoSelecao.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Aluno.cs" />
+    <Compile Include="Classes\Aluno.cs" />
     <Compile Include="AvisoRemocao.xaml.cs">
       <DependentUpon>AvisoRemocao.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Clases\MainAlunoVM.cs" />
-    <Compile Include="Clases\MainWindowVM.cs" />
-    <Compile Include="Clases\RelayCommand.cs" />
+    <Compile Include="Classes\MainWindowVM.cs" />
+    <Compile Include="Classes\RelayCommand.cs" />
     <Compile Include="TelaAluno.xaml.cs">
       <DependentUpon>TelaAluno.xaml</DependentUpon>
     </Compile>
