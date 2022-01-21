@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,26 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MainAluno
 {
     /// <summary>
-    /// Interação lógica para MainWindow.xam
+    /// Lógica interna para AvisoSelecao.xaml
     /// </summary>
-    /// 
-    public partial class MainWindow : Window
+    public partial class AvisoSelecao : Window
     {
-        public MainWindow()
+        public AvisoSelecao()
         {
-            DataContext = new MainWindowVM();
+            InitializeComponent();
         }
 
-        private void create_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
-            //TelaAluno telaCadastro = new TelaAluno();
-            //telaCadastro.ShowDialog();
+            Close();
         }
     }
 }

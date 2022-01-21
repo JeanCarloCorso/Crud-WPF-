@@ -51,24 +51,40 @@ namespace MainAluno
         
             Remover = new RelayCommand((object paran) =>
             {
-                AvisoRemocao confirma = new AvisoRemocao();
-                confirma.ShowDialog();
-                if(confirma.DialogResult == true)
+                if (AlunoSelecionado != null)
                 {
-                    Alunos.Remove(AlunoSelecionado);
-                    EstadoBotao = ControlaBotao(Alunos);
-                    Notifica("EstadoBotao");
+                    AvisoRemocao confirma = new AvisoRemocao();
+                    confirma.ShowDialog();
+                    if (confirma.DialogResult == true)
+                    {
+                        Alunos.Remove(AlunoSelecionado);
+                        EstadoBotao = ControlaBotao(Alunos);
+                        Notifica("EstadoBotao");
+                    }
+                }
+                else
+                {
+                    AvisoSelecao aviso = new AvisoSelecao();
+                    aviso.ShowDialog();
                 }
             });
 
             Editar = new RelayCommand((object paran) =>
             {
-                aluno = AlunoSelecionado;
-                TelaAluno cadastro = new TelaAluno
+                if(AlunoSelecionado != null)
                 {
-                    DataContext = AlunoSelecionado
-                };
-                cadastro.ShowDialog();
+                    aluno = AlunoSelecionado;
+                    TelaAluno cadastro = new TelaAluno
+                    {
+                        DataContext = AlunoSelecionado
+                    };
+                    cadastro.ShowDialog();
+                }
+                else
+                {
+                    AvisoSelecao aviso = new AvisoSelecao();
+                    aviso.ShowDialog();
+                }
 
             });
         }

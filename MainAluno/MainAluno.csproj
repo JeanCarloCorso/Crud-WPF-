@@ -55,17 +55,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Aluno.cs" />
+    <Compile Include="AvisoSelecao.xaml.cs">
+      <DependentUpon>AvisoSelecao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Aluno.cs" />
     <Compile Include="AvisoRemocao.xaml.cs">
       <DependentUpon>AvisoRemocao.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainAlunoVM.cs" />
-    <Compile Include="MainWindowVM.cs" />
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Clases\MainAlunoVM.cs" />
+    <Compile Include="Clases\MainWindowVM.cs" />
+    <Compile Include="Clases\RelayCommand.cs" />
     <Compile Include="TelaAluno.xaml.cs">
       <DependentUpon>TelaAluno.xaml</DependentUpon>
     </Compile>
     <Page Include="AvisoRemocao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AvisoSelecao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
