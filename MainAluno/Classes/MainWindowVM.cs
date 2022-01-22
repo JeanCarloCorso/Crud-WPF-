@@ -61,6 +61,7 @@ namespace MainAluno
                         EstadoBotao = ControlaBotao(Alunos);
                         Notifica("EstadoBotao");
                     }
+
                 }
                 else
                 {
@@ -73,12 +74,25 @@ namespace MainAluno
             {
                 if(AlunoSelecionado != null)
                 {
-                    aluno = AlunoSelecionado;
+                    Aluno alunoTemp = new Aluno
+                    {
+                        Nome = AlunoSelecionado.Nome,
+                        Sexo = AlunoSelecionado.Sexo,
+                        Nascimento = AlunoSelecionado.Nascimento,
+                        Naturalidade = AlunoSelecionado.Naturalidade,
+                        Cpf = AlunoSelecionado.Cpf,
+                        Email = AlunoSelecionado.Email,
+
+                    };
                     TelaAluno cadastro = new TelaAluno
                     {
-                        DataContext = AlunoSelecionado
+                        DataContext = alunoTemp
                     };
-                    cadastro.ShowDialog();
+                    if (cadastro.ShowDialog() == true)
+                    {
+                        Alunos.Remove(AlunoSelecionado);
+                        Alunos.Add(alunoTemp);
+                    }
                 }
                 else
                 {
