@@ -10,7 +10,7 @@ namespace MainAluno
     {
         private string nome;
         private string sexo;
-        private string nascimento;
+        private DateTime nascimento = new DateTime(1990, 01, 01);
         private string naturalidade;
         private string cpf;
         private string email;
@@ -20,7 +20,7 @@ namespace MainAluno
 
         }
 
-        public Aluno(string nome, string sexo, string nascimento, string naturalidade, string cpf, string email)
+        public Aluno(string nome, string sexo, DateTime nascimento, string naturalidade, string cpf, string email)
         {
             this.nome = nome;
             this.sexo = sexo;
@@ -42,7 +42,7 @@ namespace MainAluno
             set { sexo = value; }
         }
 
-        public string Nascimento
+        public DateTime Nascimento
         {
             get { return nascimento; }
             set { nascimento = value; }

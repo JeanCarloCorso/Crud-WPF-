@@ -62,6 +62,7 @@
     <Compile Include="AvisoRemocao.xaml.cs">
       <DependentUpon>AvisoRemocao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Sexo.cs" />
     <Compile Include="Classes\MainWindowVM.cs" />
     <Compile Include="Classes\RelayCommand.cs" />
     <Compile Include="TelaAluno.xaml.cs">

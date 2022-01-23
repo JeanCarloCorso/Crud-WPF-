@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainAluno"
         mc:Ignorable="d"
-        Title="TelaAluno" Height="450" Width="800">
-    <Grid>
-        <Label x:Name="nome" Content="Nome:" HorizontalAlignment="Left" Height="25" Margin="20,24,0,0" VerticalAlignment="Top" Width="124"/>
-        <Label x:Name="sexo" Content="Sexo:" HorizontalAlignment="Left" Height="25" Margin="20,68,0,0" VerticalAlignment="Top" Width="124"/>
-        <Label x:Name="nascimento" Content="Data de Nascimento:" HorizontalAlignment="Left" Height="25" Margin="20,110,0,0" VerticalAlignment="Top" Width="124"/>
-        <Label x:Name="naturalidade" Content="Naturalidade:" HorizontalAlignment="Left" Height="25" Margin="20,154,0,0" VerticalAlignment="Top" Width="124"/>
-        <Label x:Name="cpf" Content="CPF:" HorizontalAlignment="Left" Height="25" Margin="20,199,0,0" VerticalAlignment="Top" Width="124"/>
-        <Label x:Name="email" Content="E-mail:" HorizontalAlignment="Left" Height="25" Margin="20,239,0,0" VerticalAlignment="Top" Width="124"/>
-        <TextBox Text="{Binding Nome}" x:Name="valornome" HorizontalAlignment="Left" Height="27" Margin="149,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="628" IsEnabled="True"/>
-        <TextBox Text="{Binding Sexo}" x:Name="valorsexo" HorizontalAlignment="Left" Height="27" Margin="149,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="628" IsEnabled="True"/>
-        <TextBox Text="{Binding Nascimento}" x:Name="valornacimento" HorizontalAlignment="Left" Height="27" Margin="149,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="628" IsEnabled="True"/>
-        <TextBox Text="{Binding Naturalidade}" x:Name="valornaturalidade" HorizontalAlignment="Left" Height="27" Margin="149,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="628" IsEnabled="True"/>
-        <TextBox Text="{Binding Cpf}" x:Name="valorcpf" HorizontalAlignment="Left" Height="27" Margin="149,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="628" IsEnabled="True"/>
-        <TextBox Text="{Binding Email}" x:Name="valoremail" HorizontalAlignment="Left" Height="27" Margin="149,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="628" IsEnabled="True"/>
-        <Button x:Name="save" Content="Salvar" HorizontalAlignment="Left" Height="32" Margin="640,287,0,0" VerticalAlignment="Top" Width="137" Background="#FF22A707" FontSize="16" FontWeight="Bold" Click="save_Click"/>
-        <Button x:Name="cancel" Content="Cancelar" HorizontalAlignment="Left" Height="32" Margin="20,287,0,0" VerticalAlignment="Top" Width="137" Click="button_Copy_Click" Background="#FFEA5151" FontSize="16" FontWeight="Bold"/>
+        Title="TelaAluno" Height="366" Width="609">
+
+    <Grid Margin="0,0,0,4">
+        <Label x:Name="nome" Content="Nome:" HorizontalAlignment="Left" Height="25" Margin="20,16,0,0" VerticalAlignment="Top" Width="124"/>
+        <Label x:Name="sexo" Content="Sexo:" HorizontalAlignment="Left" Height="25" Margin="20,60,0,0" VerticalAlignment="Top" Width="124"/>
+        <Label x:Name="nascimento" Content="Data de Nascimento:" HorizontalAlignment="Left" Height="25" Margin="20,102,0,0" VerticalAlignment="Top" Width="124"/>
+        <Label x:Name="naturalidade" Content="Naturalidade:" HorizontalAlignment="Left" Height="25" Margin="20,146,0,0" VerticalAlignment="Top" Width="124"/>
+        <Label x:Name="cpf" Content="CPF:" HorizontalAlignment="Left" Height="25" Margin="20,191,0,0" VerticalAlignment="Top" Width="124"/>
+        <Label x:Name="email" Content="E-mail:" HorizontalAlignment="Left" Height="25" Margin="20,231,0,0" VerticalAlignment="Top" Width="124"/>
+        <TextBox Text="{Binding Nome}" x:Name="valornome" HorizontalAlignment="Left" Height="27" Margin="149,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
+        <ComboBox x:Name="valorsexo" Text="{Binding Sexo}" HorizontalAlignment="Left" Height="27" Margin="149,57,0,0" VerticalAlignment="Top" Width="429"/>
+        <DatePicker Text="{Binding Nascimento}" x:Name="valornacimento" HorizontalAlignment="Left" Height="27" Margin="149,102,0,0" VerticalAlignment="Top" Width="429"/>
+        <TextBox Text="{Binding Naturalidade}" x:Name="valornaturalidade" HorizontalAlignment="Left" Height="27" Margin="149,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
+        <TextBox Text="{Binding Cpf}" x:Name="valorcpf" HorizontalAlignment="Left" Height="27" Margin="149,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
+        <TextBox Text="{Binding Email}" x:Name="valoremail" HorizontalAlignment="Left" Height="27" Margin="149,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
+        <Button x:Name="save" Content="Salvar" HorizontalAlignment="Left" Height="32" Margin="441,279,0,0" VerticalAlignment="Top" Width="137" Background="#FF22A707" FontSize="16" FontWeight="Bold" Click="save_Click"/>
+        <Button x:Name="cancel" Content="Cancelar" HorizontalAlignment="Left" Height="32" Margin="20,279,0,0" VerticalAlignment="Top" Width="137" Click="button_Copy_Click" Background="#FFEA5151" FontSize="16" FontWeight="Bold"/>
     </Grid>
 </Window>

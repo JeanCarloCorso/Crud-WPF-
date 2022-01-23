@@ -22,6 +22,7 @@ namespace MainAluno
         public TelaAluno()
         {
             InitializeComponent();
+            valorsexo.ItemsSource = Enum.GetValues(typeof(Classes.Sexo)).Cast<Classes.Sexo>();
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
