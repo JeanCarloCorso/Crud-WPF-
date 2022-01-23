@@ -10,7 +10,7 @@ namespace MainAluno
     {
         private string nome;
         private string sexo;
-        private DateTime nascimento = new DateTime(1990, 01, 01);
+        private DateTime nascimento;
         private string naturalidade;
         private string cpf;
         private string email;

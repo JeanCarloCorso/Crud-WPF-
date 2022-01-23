@@ -46,7 +46,7 @@ namespace MainAluno
                     EstadoBotao = ControlaBotao(Alunos);
                     Notifica("EstadoBotao");
                 }
-                
+
             });
         
             Remover = new RelayCommand((object paran) =>

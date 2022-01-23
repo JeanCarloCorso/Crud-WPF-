@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainAluno"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         mc:Ignorable="d"
         Title="TelaAluno" Height="366" Width="609">
 
@@ -15,12 +16,12 @@
         <Label x:Name="cpf" Content="CPF:" HorizontalAlignment="Left" Height="25" Margin="20,191,0,0" VerticalAlignment="Top" Width="124"/>
         <Label x:Name="email" Content="E-mail:" HorizontalAlignment="Left" Height="25" Margin="20,231,0,0" VerticalAlignment="Top" Width="124"/>
         <TextBox Text="{Binding Nome}" x:Name="valornome" HorizontalAlignment="Left" Height="27" Margin="149,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
-        <ComboBox x:Name="valorsexo" Text="{Binding Sexo}" HorizontalAlignment="Left" Height="27" Margin="149,57,0,0" VerticalAlignment="Top" Width="429"/>
-        <DatePicker Text="{Binding Nascimento}" x:Name="valornacimento" HorizontalAlignment="Left" Height="27" Margin="149,102,0,0" VerticalAlignment="Top" Width="429"/>
+        <ComboBox x:Name="valorsexo"  Text="{Binding Sexo}" HorizontalAlignment="Left" Height="27" Margin="149,57,0,0" VerticalAlignment="Top" Width="429"/>
         <TextBox Text="{Binding Naturalidade}" x:Name="valornaturalidade" HorizontalAlignment="Left" Height="27" Margin="149,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
-        <TextBox Text="{Binding Cpf}" x:Name="valorcpf" HorizontalAlignment="Left" Height="27" Margin="149,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
-        <TextBox Text="{Binding Email}" x:Name="valoremail" HorizontalAlignment="Left" Height="27" Margin="149,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" IsEnabled="True"/>
+        <syncfusion:SfMaskedEdit Text="{Binding Cpf}" x:Name="valorcpf" PromptChar="_" HorizontalAlignment="Left" Height="32" Margin="149,184,0,0" MaskType="RegEx" Mask="[0-9]\d{2}\.[0-9]\d{2}\.[0-9]\d{2}\-[0-9]\d{1}" TextWrapping="Wrap" VerticalAlignment="Top" Watermark="999.999.999-99" Width="429"/>
+        <syncfusion:SfMaskedEdit Text="{Binding Email}" x:Name="valoremail" PromptChar="_" HorizontalAlignment="Left" Height="32" Margin="149,230,0,0" MaskType="RegEx" Mask="[A-Za-z0-9._%-]+@[A-Za-z0-9]+.[A-Za-z]{2,3}" TextWrapping="Wrap" VerticalAlignment="Top" Watermark="email@email.com" Width="429"/>
         <Button x:Name="save" Content="Salvar" HorizontalAlignment="Left" Height="32" Margin="441,279,0,0" VerticalAlignment="Top" Width="137" Background="#FF22A707" FontSize="16" FontWeight="Bold" Click="save_Click"/>
         <Button x:Name="cancel" Content="Cancelar" HorizontalAlignment="Left" Height="32" Margin="20,279,0,0" VerticalAlignment="Top" Width="137" Click="button_Copy_Click" Background="#FFEA5151" FontSize="16" FontWeight="Bold"/>
+        <syncfusion:SfMaskedEdit x:Name="sfMaskedEdit" Text="{Binding Nascimento}" HorizontalAlignment="Left" Height="32" Margin="149,102,0,0" MaskType="RegEx" Mask="[0-9]\d{1}\/[0-9]\d{1}\/[0-9]\d{3}" TextWrapping="Wrap" Watermark="01/01/1990" VerticalAlignment="Top" Width="429"/>
     </Grid>
 </Window>
