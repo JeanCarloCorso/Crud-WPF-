@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainAluno.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace MainAluno
 {
-    public class MainWindowVM : INotifyPropertyChanged
+    public class MainWindowVM : BaseNotify
     {
         public ObservableCollection<Aluno> Alunos { get; set; }
         public Aluno aluno { get; set; }
@@ -23,8 +24,6 @@ namespace MainAluno
         {
             
             Alunos = new ObservableCollection<Aluno>();
-            EstadoBotao = ControlaBotao(Alunos);
-            Notifica("EstadoBotao");
             Comandos();
         }
 
@@ -43,8 +42,6 @@ namespace MainAluno
                 if(cadastro.DialogResult == true)
                 {
                     Alunos.Add(aluno);
-                    EstadoBotao = ControlaBotao(Alunos);
-                    Notifica("EstadoBotao");
                 }
 
             });
@@ -58,8 +55,6 @@ namespace MainAluno
                     if (confirma.DialogResult == true)
                     {
                         Alunos.Remove(AlunoSelecionado);
-                        EstadoBotao = ControlaBotao(Alunos);
-                        Notifica("EstadoBotao");
                     }
 
                 }
@@ -68,6 +63,9 @@ namespace MainAluno
                     AvisoSelecao aviso = new AvisoSelecao();
                     aviso.ShowDialog();
                 }
+            },(object paran) =>
+            { 
+                return Alunos.Count > 0;
             });
 
             Editar = new RelayCommand((object paran) =>
@@ -90,8 +88,12 @@ namespace MainAluno
                     };
                     if (cadastro.ShowDialog() == true)
                     {
-                        Alunos.Remove(AlunoSelecionado);
-                        Alunos.Add(alunoTemp);
+                        AlunoSelecionado.Nome = alunoTemp.Nome;
+                        AlunoSelecionado.Sexo = alunoTemp.Sexo;
+                        AlunoSelecionado.Nascimento = alunoTemp.Nascimento;
+                        AlunoSelecionado.Naturalidade = alunoTemp.Naturalidade;
+                        AlunoSelecionado.Cpf = alunoTemp.Cpf;
+                        AlunoSelecionado.Email = alunoTemp.Email;
                     }
                 }
                 else
@@ -100,18 +102,9 @@ namespace MainAluno
                     aviso.ShowDialog();
                 }
 
+            },(object paran) =>{
+                return AlunoSelecionado != null;
             });
-        }
-
-        private bool ControlaBotao(ObservableCollection<Aluno> Alunos)
-        {
-            if (Alunos.Count == 0) {return false;}
-            return true;
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void Notifica(String propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

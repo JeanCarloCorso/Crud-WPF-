@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainAluno.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MainAluno
 {
-    public class Aluno
+    public class Aluno : BaseNotify
     {
         private string nome;
         private string sexo;
-        private DateTime nascimento;
+        private string nascimento = DateTime.Today.ToString("dd-MM-yyyy");
         private string naturalidade;
         private string cpf;
         private string email;
@@ -20,7 +21,7 @@ namespace MainAluno
 
         }
 
-        public Aluno(string nome, string sexo, DateTime nascimento, string naturalidade, string cpf, string email)
+        public Aluno(string nome, string sexo, string nascimento, string naturalidade, string cpf, string email)
         {
             this.nome = nome;
             this.sexo = sexo;
@@ -33,37 +34,61 @@ namespace MainAluno
         public string Nome
         {
             get { return nome; }
-            set { nome = value; }
+            set 
+            { 
+                nome = value;
+                Notifica("Nome");
+            }
         }
 
         public string Sexo
         {
             get { return sexo; }
-            set { sexo = value; }
+            set 
+            { 
+                sexo = value;
+                Notifica("Sexo");
+            }
         }
 
-        public DateTime Nascimento
+        public string Nascimento
         {
             get { return nascimento; }
-            set { nascimento = value; }
+            set 
+            { 
+                nascimento = value;
+                Notifica("Nascimento");
+            }
         }
 
         public string Naturalidade
         {
             get { return naturalidade; }
-            set { naturalidade = value; }
+            set 
+            { 
+                naturalidade = value;
+                Notifica("Naturalidade");
+            }
         }
 
         public string Cpf
         {
             get { return cpf; }
-            set { cpf = value; }
+            set 
+            { 
+                cpf = value;
+                Notifica("Cpf");
+            }
         }
 
         public string Email
         {
             get { return email; }
-            set { email = value; }
+            set 
+            { 
+                email = value;
+                Notifica("Email");
+            }
         }
     }
 }

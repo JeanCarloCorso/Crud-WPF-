@@ -20,8 +20,8 @@
             </ListView.View>
         </ListView>
         <Button x:Name="create" Content="Novo" Command="{Binding Adicionar}" HorizontalAlignment="Left" Height="47" Margin="59,347,0,0" VerticalAlignment="Top" Width="166"  Background="#FF22A707" BorderBrush="#FF22A707" Foreground="#F8000000" FontSize="22" FontWeight="Bold" Click="create_Click"/>
-        <Button x:Name="update" Content="Atualizar" Command="{Binding Editar}" IsEnabled="{Binding EstadoBotao}" HorizontalAlignment="Center" Height="47" Margin="0,347,0,0" VerticalAlignment="Top" Width="166" FontSize="22" Background="#FFD8C707" FontWeight="Bold" BorderBrush="#FFD8C707"/>
-        <Button x:Name="delet" Content="Apagar" Command="{Binding Remover}" IsEnabled="{Binding EstadoBotao}" HorizontalAlignment="Left" Height="47" Margin="574,347,0,0" VerticalAlignment="Top" Width="166" BorderBrush="#FFEA5151" Background="#FFEA5151" FontSize="22" FontWeight="Bold"/>
+        <Button x:Name="update" Content="Atualizar" Command="{Binding Editar}" HorizontalAlignment="Center" Height="47" Margin="0,347,0,0" VerticalAlignment="Top" Width="166" FontSize="22" Background="#FFD8C707" FontWeight="Bold" BorderBrush="#FFD8C707"/>
+        <Button x:Name="delet" Content="Apagar" Command="{Binding Remover}" HorizontalAlignment="Left" Height="47" Margin="574,347,0,0" VerticalAlignment="Top" Width="166" BorderBrush="#FFEA5151" Background="#FFEA5151" FontSize="22" FontWeight="Bold"/>
 
     </Grid>
 </Window>

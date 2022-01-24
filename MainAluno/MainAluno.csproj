@@ -71,6 +71,7 @@
     <Compile Include="AvisoRemocao.xaml.cs">
       <DependentUpon>AvisoRemocao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\BaseNotify.cs" />
     <Compile Include="Classes\Sexo.cs" />
     <Compile Include="Classes\MainWindowVM.cs" />
     <Compile Include="Classes\RelayCommand.cs" />
