@@ -9,9 +9,10 @@ namespace MainAluno
 {
     public class Aluno : BaseNotify
     {
+        private int id;
         private string nome;
         private string sexo;
-        private string nascimento = DateTime.Today.ToString("dd-MM-yyyy");
+        private DateTime nascimento = DateTime.Today;
         private string naturalidade;
         private string cpf;
         private string email;
@@ -21,7 +22,7 @@ namespace MainAluno
 
         }
 
-        public Aluno(string nome, string sexo, string nascimento, string naturalidade, string cpf, string email)
+        public Aluno(string nome, string sexo, DateTime nascimento, string naturalidade, string cpf, string email)
         {
             this.nome = nome;
             this.sexo = sexo;
@@ -31,6 +32,11 @@ namespace MainAluno
             this.email = email;
         }
 
+        public int Id
+        {
+            get { return id; }
+            set{ id = value; }
+        }
         public string Nome
         {
             get { return nome; }
@@ -51,7 +57,7 @@ namespace MainAluno
             }
         }
 
-        public string Nascimento
+        public DateTime Nascimento
         {
             get { return nascimento; }
             set 

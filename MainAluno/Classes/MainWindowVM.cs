@@ -3,10 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MainAluno
@@ -22,8 +26,16 @@ namespace MainAluno
         public ICommand Editar { get; private set; }
         public MainWindowVM()
         {
-            
-            Alunos = new ObservableCollection<Aluno>();
+            try
+            {
+                Conexao conexao = new Conexao();
+                Alunos = conexao.Select();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             Comandos();
         }
 
@@ -41,6 +53,15 @@ namespace MainAluno
 
                 if(cadastro.DialogResult == true)
                 {
+                    try
+                    {
+                        Conexao conexao = new Conexao();
+                        conexao.Insert(aluno);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                     Alunos.Add(aluno);
                 }
 
@@ -54,6 +75,15 @@ namespace MainAluno
                     confirma.ShowDialog();
                     if (confirma.DialogResult == true)
                     {
+                        try
+                        {
+                            Conexao conexao = new Conexao();
+                            conexao.Delet(AlunoSelecionado.Id);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         Alunos.Remove(AlunoSelecionado);
                     }
 
@@ -88,12 +118,18 @@ namespace MainAluno
                     };
                     if (cadastro.ShowDialog() == true)
                     {
-                        AlunoSelecionado.Nome = alunoTemp.Nome;
-                        AlunoSelecionado.Sexo = alunoTemp.Sexo;
-                        AlunoSelecionado.Nascimento = alunoTemp.Nascimento;
-                        AlunoSelecionado.Naturalidade = alunoTemp.Naturalidade;
-                        AlunoSelecionado.Cpf = alunoTemp.Cpf;
-                        AlunoSelecionado.Email = alunoTemp.Email;
+                        try
+                        {
+                            Conexao conexao = new Conexao();
+                            conexao.Update(alunoTemp);
+                            Alunos.Clear();
+                            Alunos = conexao.Select();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 }
                 else
