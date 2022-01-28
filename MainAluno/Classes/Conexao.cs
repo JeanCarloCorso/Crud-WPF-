@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using MySql.Data.MySqlClient;
 
 namespace MainAluno.Classes
@@ -23,15 +24,7 @@ namespace MainAluno.Classes
 
         public Conexao()
         {
-            try
-            {
-                connection = new MySqlConnection($"server={host};database={dbname};port={port};user={username};password={password}");
-                connection.Open();
-
-            }catch (Exception)
-            {
-                throw;
-            }
+            connection = new MySqlConnection($"server={host};database={dbname};port={port};user={username};password={password}");
         }
 
         public void Close()
@@ -39,15 +32,30 @@ namespace MainAluno.Classes
             connection.Close();
         }
 
+        public void Open()
+        {
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Não foi possivel conectar ao banco!");
+                throw;
+            }
+        }
+
         public ObservableCollection<Aluno> Select()
         {
+            Open();
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM Alunos", connection);
             MySqlDataReader dr = cmd.ExecuteReader();
 
             Alunos = new ObservableCollection<Aluno>();
-            aluno = new Aluno();
+            
             while (dr.Read())
             {
+                aluno = new Aluno();
                 aluno.Id = (int)dr[0];
                 aluno.Nome = (string)dr[1];
                 aluno.Sexo = (string)dr[2];
@@ -58,12 +66,13 @@ namespace MainAluno.Classes
 
                 Alunos.Add(aluno);
             }
-
-                return Alunos;
+            Close();
+            return Alunos;
         }
 
         public bool Insert(Aluno aluno)
         {
+            Open();
             using (MySqlCommand command = new MySqlCommand("INSERT INTO Alunos " +
                 "(nome, sexo, nascimento, naturalidade, cpf, email) VALUES " +
                 "(@nome,@sexo,@nascimento,@naturalidade,@cpf,@email)", connection))
@@ -77,35 +86,40 @@ namespace MainAluno.Classes
 
                 if (command.ExecuteNonQuery() > 0)
                 {
+                    Close();
                     return true;
                 }
             }
-                
-                return false;
+            Close();
+            return false;
         }
 
 
         public bool Delet(int id)
         {
+            Open();
             using (MySqlCommand command = new MySqlCommand("DELETE FROM Alunos WHERE id=@id", connection))
             {
                 command.Parameters.AddWithValue("id", id);
                 if (command.ExecuteNonQuery() > 0)
                 {
+                    Close();
                     return true;
                 }
             }
+            Close();
             return false;
         }
 
         public bool Update(Aluno aluno)
         {
+            Open();
             using (MySqlCommand command = new MySqlCommand("UPDATE Alunos SET " +
                 "nome = @nome, " +
-                "sexo = @sexo " +
-                "nascimento = @nascimento" +
-                "naturalidade = @naturalidade" +
-                "cpf = @cpf" +
+                "sexo = @sexo, " +
+                "nascimento = @nascimento," +
+                "naturalidade = @naturalidade," +
+                "cpf = @cpf," +
                 "email = @email" +
                 "WHERE id = @id; ", connection))
             {
@@ -118,9 +132,11 @@ namespace MainAluno.Classes
                 command.Parameters.AddWithValue("id", aluno.Id);
                 if (command.ExecuteNonQuery() > 0)
                 {
+                    Close();
                     return true;
                 }
             }
+            Close();
             return false;
         }
 

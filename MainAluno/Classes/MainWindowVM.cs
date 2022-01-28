@@ -94,7 +94,7 @@ namespace MainAluno
                     aviso.ShowDialog();
                 }
             },(object paran) =>
-            { 
+            {
                 return Alunos.Count > 0;
             });
 
@@ -104,6 +104,7 @@ namespace MainAluno
                 {
                     Aluno alunoTemp = new Aluno
                     {
+                        Id = AlunoSelecionado.Id,
                         Nome = AlunoSelecionado.Nome,
                         Sexo = AlunoSelecionado.Sexo,
                         Nascimento = AlunoSelecionado.Nascimento,
