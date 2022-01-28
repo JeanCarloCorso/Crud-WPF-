@@ -113,14 +113,15 @@ namespace MainAluno.Classes
 
         public bool Update(Aluno aluno)
         {
+            int teste;
             Open();
             using (MySqlCommand command = new MySqlCommand("UPDATE Alunos SET " +
                 "nome = @nome, " +
                 "sexo = @sexo, " +
-                "nascimento = @nascimento," +
-                "naturalidade = @naturalidade," +
-                "cpf = @cpf," +
-                "email = @email" +
+                "nascimento = @nascimento, " +
+                "naturalidade = @naturalidade, " +
+                "cpf = @cpf, " +
+                "email = @email " +
                 "WHERE id = @id; ", connection))
             {
                 command.Parameters.AddWithValue("nome", aluno.Nome);
@@ -130,14 +131,16 @@ namespace MainAluno.Classes
                 command.Parameters.AddWithValue("cpf", aluno.Cpf);
                 command.Parameters.AddWithValue("email", aluno.Email);
                 command.Parameters.AddWithValue("id", aluno.Id);
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    Close();
-                    return true;
-                }
+                teste = command.ExecuteNonQuery();
+                
             }
             Close();
+            if(teste > 0)
+            {
+                return true;
+            }
             return false;
+            
         }
 
     }

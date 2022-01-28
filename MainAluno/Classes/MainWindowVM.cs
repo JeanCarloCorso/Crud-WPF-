@@ -125,6 +125,7 @@ namespace MainAluno
                             conexao.Update(alunoTemp);
                             Alunos.Clear();
                             Alunos = conexao.Select();
+                            Notifica("Alunos");
 
                         }
                         catch (Exception ex)
