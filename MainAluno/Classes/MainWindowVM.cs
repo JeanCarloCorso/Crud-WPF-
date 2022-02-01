@@ -24,12 +24,13 @@ namespace MainAluno
         public ICommand Adicionar { get; private set; }
         public ICommand Remover { get; private set; }
         public ICommand Editar { get; private set; }
+        private Conexao conexao;
         public MainWindowVM()
         {
             try
             {
-                Conexao conexao = new Conexao();
-                Alunos = conexao.Select();
+                conexao = new Conexao();
+                Alunos = new ObservableCollection<Aluno>(conexao.Select());
             }
             catch (Exception ex)
             {
@@ -55,7 +56,6 @@ namespace MainAluno
                 {
                     try
                     {
-                        Conexao conexao = new Conexao();
                         conexao.Insert(aluno);
                     }
                     catch (Exception ex)
@@ -77,7 +77,6 @@ namespace MainAluno
                     {
                         try
                         {
-                            Conexao conexao = new Conexao();
                             conexao.Delet(AlunoSelecionado.Id);
                         }
                         catch (Exception ex)
@@ -121,11 +120,13 @@ namespace MainAluno
                     {
                         try
                         {
-                            Conexao conexao = new Conexao();
                             conexao.Update(alunoTemp);
-                            Alunos.Clear();
-                            Alunos = conexao.Select();
-                            Notifica("Alunos");
+                            AlunoSelecionado.Nome = alunoTemp.Nome;
+                            AlunoSelecionado.Sexo = alunoTemp.Sexo;
+                            AlunoSelecionado.Nascimento = alunoTemp.Nascimento;
+                            AlunoSelecionado.Naturalidade = alunoTemp.Naturalidade;
+                            AlunoSelecionado.Cpf = alunoTemp.Cpf;
+                            AlunoSelecionado.Email = alunoTemp.Email;
 
                         }
                         catch (Exception ex)

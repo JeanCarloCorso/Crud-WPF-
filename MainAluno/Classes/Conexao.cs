@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using MySql.Data.MySqlClient;
+using System.Reflection;
 
 namespace MainAluno.Classes
 {
@@ -15,12 +16,12 @@ namespace MainAluno.Classes
         private static string port = "3307";
         private static string username = "root";
         private static string password = "root";
-        public static string dbname = "Crud-Luz";
+        private static string dbname = "Crud-Luz";
 
         private static MySqlConnection connection;
 
-        public ObservableCollection<Aluno> Alunos { get; set; }
-        public Aluno aluno { get; set; }
+        private List<Aluno> Alunos;
+        private Aluno aluno;
 
         public Conexao()
         {
@@ -45,13 +46,13 @@ namespace MainAluno.Classes
             }
         }
 
-        public ObservableCollection<Aluno> Select()
+        public List<Aluno> Select()
         {
             Open();
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM Alunos", connection);
             MySqlDataReader dr = cmd.ExecuteReader();
 
-            Alunos = new ObservableCollection<Aluno>();
+            Alunos = new List<Aluno>();
             
             while (dr.Read())
             {
@@ -63,10 +64,11 @@ namespace MainAluno.Classes
                 aluno.Naturalidade = (string)dr[4];
                 aluno.Cpf = (string)dr[5];
                 aluno.Email = (string)dr[6];
-
+                
                 Alunos.Add(aluno);
             }
             Close();
+            cmd.Dispose();
             return Alunos;
         }
 
