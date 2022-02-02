@@ -50,7 +50,7 @@ namespace MainAluno.Classes
             {
                 conn.Open();
                 Comando = conn.Comandos();
-                Comando.CommandText = $"INSERT INTO Alunos (nome, sexo, nascimento, naturalidade, cpf, email) VALUES (\"{t.Nome}\",\"{t.Sexo}\",\"{t.Nascimento}\",\"{t.Naturalidade}\",\"{t.Cpf}\",\"{t.Email}\")";
+                Comando.CommandText = $"INSERT INTO Alunos (nome, sexo, nascimento, naturalidade, cpf, email) VALUES (\"{t.Nome}\",\"{t.Sexo}\",\"{t.Nascimento.ToString("yyyy/MM/dd h:mm:ss")}\",\"{t.Naturalidade}\",\"{t.Cpf}\",\"{t.Email}\")";
 
                 Comando.ExecuteNonQuery();
             }
@@ -110,7 +110,7 @@ namespace MainAluno.Classes
             {
                 conn.Open();
                 Comando = conn.Comandos();
-                Comando.CommandText = $"UPDATE Alunos SET nome = \"{t.Nome}\", sexo = \"{t.Sexo}\", nascimento = \"{t.Nascimento}\", naturalidade = \"{t.Naturalidade}\", cpf = \"{t.Cpf}\", email = \"{t.Email}\" WHERE id = \"{t.Id}\";";
+                Comando.CommandText = $"UPDATE Alunos SET nome = \"{t.Nome}\", sexo = \"{t.Sexo}\", nascimento = \"{t.Nascimento.ToString("yyyy/MM/dd h:mm:ss")}\", naturalidade = \"{t.Naturalidade}\", cpf = \"{t.Cpf}\", email = \"{t.Email}\" WHERE id = \"{t.Id}\";";
 
                 Comando.ExecuteNonQuery();
                 
