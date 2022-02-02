@@ -2,6 +2,8 @@
 using MainAluno.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +12,28 @@ namespace MainAluno.Classes
 {
     internal class AlunoDAO : IDAO<Aluno>
     {
-        private static Postgres conn;
+        private static IConexao conn;
+        private IDbCommand Comando;
 
-        public AlunoDAO()
+        public AlunoDAO(int ops)
         {
-            conn = new Postgres();
+            switch (ops)
+            {
+                case 0: conn = new Mysql(); break;
+                case 1: conn = new Postgres(); break;
+
+                default: throw new Exception();
+            }
         }
+
         public void Delete(Aluno t)
         {
             try
             {
                 conn.Open();
-                var Comando = conn.Comandos();
-                Comando.CommandText = "DELETE FROM Alunos WHERE id=@id";
+                Comando = conn.Comandos();
+                Comando.CommandText = $"DELETE FROM Alunos WHERE id=\"{t.Id}\"";
 
-                Comando.Parameters.AddWithValue("id", t.Id);
                 Comando.ExecuteNonQuery();
                 Comando.Dispose();
                 conn.Close();
@@ -40,24 +49,19 @@ namespace MainAluno.Classes
             try
             {
                 conn.Open();
-                var Comando = conn.Comandos();
-                Comando.CommandText = "INSERT INTO Alunos (nome, sexo, nascimento, naturalidade, cpf, email) VALUES (@nome,@sexo,@nascimento,@naturalidade,@cpf,@email)";
-
-                Comando.Parameters.AddWithValue("nome", t.Nome);
-                Comando.Parameters.AddWithValue("sexo", t.Sexo);
-                Comando.Parameters.AddWithValue("nascimento", t.Nascimento);
-                Comando.Parameters.AddWithValue("naturalidade", t.Naturalidade);
-                Comando.Parameters.AddWithValue("cpf", t.Cpf);
-                Comando.Parameters.AddWithValue("email", t.Email);
+                Comando = conn.Comandos();
+                Comando.CommandText = $"INSERT INTO Alunos (nome, sexo, nascimento, naturalidade, cpf, email) VALUES (\"{t.Nome}\",\"{t.Sexo}\",\"{t.Nascimento}\",\"{t.Naturalidade}\",\"{t.Cpf}\",\"{t.Email}\")";
 
                 Comando.ExecuteNonQuery();
-                Comando.Dispose();
-                conn.Close();
-
             }
             catch(Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                Comando.Dispose();
+                conn.Close();
             }
         }
 
@@ -66,9 +70,9 @@ namespace MainAluno.Classes
             try
             {
                 conn.Open();
-                var Comando = conn.Comandos();
+                Comando = conn.Comandos();
                 Comando.CommandText = "SELECT * FROM Alunos";
-                var dr = Comando.ExecuteReader();
+                IDataReader dr = Comando.ExecuteReader();
 
                 List<Aluno> Alunos = new List<Aluno>();
                 Aluno aluno;
@@ -86,13 +90,17 @@ namespace MainAluno.Classes
 
                     Alunos.Add(aluno);
                 }
-                Comando.Dispose();
-                conn.Close();
+                
                 return Alunos;
 
             }catch(Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                Comando.Dispose();
+                conn.Close();
             }
         }
 
@@ -101,29 +109,19 @@ namespace MainAluno.Classes
             try
             {
                 conn.Open();
-                var Comando = conn.Comandos();
-                Comando.CommandText = "UPDATE Alunos SET " +
-                    "nome = @nome, " +
-                    "sexo = @sexo, " +
-                    "nascimento = @nascimento, " +
-                    "naturalidade = @naturalidade, " +
-                    "cpf = @cpf, " +
-                    "email = @email " +
-                    "WHERE id = @id; ";
+                Comando = conn.Comandos();
+                Comando.CommandText = $"UPDATE Alunos SET nome = \"{t.Nome}\", sexo = \"{t.Sexo}\", nascimento = \"{t.Nascimento}\", naturalidade = \"{t.Naturalidade}\", cpf = \"{t.Cpf}\", email = \"{t.Email}\" WHERE id = \"{t.Id}\";";
 
-                Comando.Parameters.AddWithValue("nome", t.Nome);
-                Comando.Parameters.AddWithValue("sexo", t.Sexo);
-                Comando.Parameters.AddWithValue("nascimento", t.Nascimento);
-                Comando.Parameters.AddWithValue("naturalidade", t.Naturalidade);
-                Comando.Parameters.AddWithValue("cpf", t.Cpf);
-                Comando.Parameters.AddWithValue("email", t.Email);
-                Comando.Parameters.AddWithValue("id", t.Id);
                 Comando.ExecuteNonQuery();
-                Comando.Dispose();
-                conn.Close();
+                
             }catch(Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                Comando.Dispose();
+                conn.Close();
             }
         }
     }

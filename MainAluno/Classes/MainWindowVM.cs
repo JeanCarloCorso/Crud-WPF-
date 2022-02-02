@@ -31,7 +31,7 @@ namespace MainAluno
             try
             {
                 //conexao = new Conexao();
-                conexao = new AlunoDAO();
+                conexao = new AlunoDAO(0);
                 Alunos = new ObservableCollection<Aluno>(conexao.Select());
             }
             catch (Exception ex)

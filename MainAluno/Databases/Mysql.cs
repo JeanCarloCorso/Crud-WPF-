@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data;
+using MainAluno.Interfaces;
 
 namespace MainAluno.Databases
 {
-    internal class Mysql
+    internal class Mysql : IConexao
     {
         private static string host = "localhost";
         private static string port = "3307";
@@ -21,15 +22,7 @@ namespace MainAluno.Databases
         private static MySqlCommand command;
         public Mysql()
         {
-            try
-            {
-                connection = new MySqlConnection($"server={host};database={dbname};port={port};user={username};password={password}");
-                connection.Open();
-            }catch (Exception ex)
-            {
-                MessageBox.Show("Coneção com o banco MySql não realizada, " + ex);
-                throw;
-            }
+             connection = new MySqlConnection($"server={host};database={dbname};port={port};user={username};password={password}");
         }
 
         public void Close()
@@ -37,7 +30,20 @@ namespace MainAluno.Databases
             connection.Close();
         }
 
-        public MySqlCommand Comandos()
+        public void Open()
+        {
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Coneção com o banco MySql não realizada, " + ex);
+                throw;
+            }
+        }
+
+        public IDbCommand Comandos()
         {
             try
             {

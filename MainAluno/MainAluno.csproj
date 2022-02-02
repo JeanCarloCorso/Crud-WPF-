@@ -167,12 +167,12 @@
     </Compile>
     <Compile Include="Classes\AlunoDAO.cs" />
     <Compile Include="Classes\BaseNotify.cs" />
-    <Compile Include="Classes\Conexao.cs" />
     <Compile Include="Classes\Sexo.cs" />
     <Compile Include="Classes\MainWindowVM.cs" />
     <Compile Include="Classes\RelayCommand.cs" />
     <Compile Include="Databases\Mysql.cs" />
     <Compile Include="Databases\Postgres.cs" />
+    <Compile Include="Interfaces\IConexao.cs" />
     <Compile Include="Interfaces\IDAO.cs" />
     <Compile Include="TelaAluno.xaml.cs">
       <DependentUpon>TelaAluno.xaml</DependentUpon>

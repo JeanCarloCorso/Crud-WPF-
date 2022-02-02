@@ -6,16 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data;
+using MainAluno.Interfaces;
 
 namespace MainAluno.Databases
 {
-    internal class Postgres
+    internal class Postgres : IConexao
     {
         static string serverName = "127.0.0.1";      //localhost
         static string port = "5430";                //porta default
         static string userName = "postgres";       //nome do administrador
         static string password = "root";          //senha do administrador
-        static string databaseName = "Crud-Luz";    //nome do banco de dados
+        static string databaseName = "Crud-Luz"; //nome do banco de dados
         NpgsqlConnection pgsqlConnection = null;
         NpgsqlCommand pgsqlCommand = null;
         string connString = null;
@@ -27,7 +28,7 @@ namespace MainAluno.Databases
             pgsqlConnection = new NpgsqlConnection(connString);
         }
 
-        public NpgsqlCommand Comandos()
+        public IDbCommand Comandos()
         {
             try
             {
