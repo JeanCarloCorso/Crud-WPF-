@@ -97,7 +97,7 @@ namespace MainAluno.Classes
         }
 
 
-        public bool Delet(int id)
+        public bool Delete(int id)
         {
             Open();
             using (MySqlCommand command = new MySqlCommand("DELETE FROM Alunos WHERE id=@id", connection))

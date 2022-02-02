@@ -24,12 +24,14 @@ namespace MainAluno
         public ICommand Adicionar { get; private set; }
         public ICommand Remover { get; private set; }
         public ICommand Editar { get; private set; }
-        private Conexao conexao;
+        //private Conexao conexao;
+        private AlunoDAO conexao;
         public MainWindowVM()
         {
             try
             {
-                conexao = new Conexao();
+                //conexao = new Conexao();
+                conexao = new AlunoDAO();
                 Alunos = new ObservableCollection<Aluno>(conexao.Select());
             }
             catch (Exception ex)
@@ -57,12 +59,12 @@ namespace MainAluno
                     try
                     {
                         conexao.Insert(aluno);
+                        Alunos.Add(aluno);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
-                    Alunos.Add(aluno);
                 }
 
             });
@@ -77,13 +79,13 @@ namespace MainAluno
                     {
                         try
                         {
-                            conexao.Delet(AlunoSelecionado.Id);
+                            conexao.Delete(AlunoSelecionado);
+                            Alunos.Remove(AlunoSelecionado);
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message);
                         }
-                        Alunos.Remove(AlunoSelecionado);
                     }
 
                 }
