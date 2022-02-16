@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MainAluno.Classes
 {
-    internal class AlunoDAO : IDAO<Aluno>
+    public class AlunoDAO : IDAO<Aluno>
     {
         private static IConexao conn;
         private IDbCommand Comando;
@@ -26,7 +26,7 @@ namespace MainAluno.Classes
             }
         }
 
-        public void Delete(Aluno t)
+        public bool Delete(Aluno t)
         {
             try
             {
@@ -35,16 +35,20 @@ namespace MainAluno.Classes
                 Comando.CommandText = $"DELETE FROM Alunos WHERE id=\"{t.Id}\"";
 
                 Comando.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
                 Comando.Dispose();
                 conn.Close();
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
         }
 
-        public void Insert(Aluno t)
+        public bool Insert(Aluno t)
         {
             try
             {
@@ -53,10 +57,11 @@ namespace MainAluno.Classes
                 Comando.CommandText = $"INSERT INTO Alunos (nome, sexo, nascimento, naturalidade, cpf, email) VALUES (\"{t.Nome}\",\"{t.Sexo}\",\"{t.Nascimento.ToString("yyyy/MM/dd h:mm:ss")}\",\"{t.Naturalidade}\",\"{t.Cpf}\",\"{t.Email}\")";
 
                 Comando.ExecuteNonQuery();
+                return true;
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                return false;
             }
             finally
             {
@@ -104,7 +109,7 @@ namespace MainAluno.Classes
             }
         }
 
-        public void Update(Aluno t)
+        public bool Update(Aluno t)
         {
             try
             {
@@ -113,10 +118,12 @@ namespace MainAluno.Classes
                 Comando.CommandText = $"UPDATE Alunos SET nome = \"{t.Nome}\", sexo = \"{t.Sexo}\", nascimento = \"{t.Nascimento.ToString("yyyy/MM/dd h:mm:ss")}\", naturalidade = \"{t.Naturalidade}\", cpf = \"{t.Cpf}\", email = \"{t.Email}\" WHERE id = \"{t.Id}\";";
 
                 Comando.ExecuteNonQuery();
-                
-            }catch(Exception ex)
+
+                return true;
+            }
+            catch (Exception)
             {
-                throw ex;
+                return false;
             }
             finally
             {

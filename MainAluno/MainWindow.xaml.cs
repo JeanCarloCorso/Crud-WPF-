@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainAluno.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace MainAluno
     {
         public MainWindow()
         {
-            DataContext = new MainWindowVM();
+            BaseNotify baseNotify = new MainWindowVM();
+            DataContext = baseNotify;
         }
 
         private void create_Click(object sender, RoutedEventArgs e)

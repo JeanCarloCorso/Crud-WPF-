@@ -12,9 +12,9 @@ namespace MainAluno.Interfaces
     /// <typeparam name="T"></typeparam>
     interface IDAO<T>
     {
-        void Insert(T t);
-        void Update(T t);
-        void Delete(T t);
+        bool Insert(T t);
+        bool Update(T t);
+        bool Delete(T t);
         List<T> Select();
     }
 }
